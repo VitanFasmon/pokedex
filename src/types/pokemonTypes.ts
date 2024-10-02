@@ -10,12 +10,14 @@ type AbilityList = {
   is_hidden: boolean;
   slot: number;
 };
-type Effect_entry = {
+type EffectEntry = {
   effect: string;
   language: { name: string; url: string };
 };
 type Ability = {
-  effect_entries: Effect_entry[];
+  effect_entries: EffectEntry[];
+  id: number;
+  name: string;
 };
 type Pokemon = {
   abilities: AbilityList[];
@@ -41,4 +43,4 @@ type Pokemon = {
   types: [];
   weight: number;
 };
-export type { PokemonNameAndUrl, Pokemon, Ability, Effect_entry };
+export type { PokemonNameAndUrl, Pokemon, Ability, EffectEntry };
