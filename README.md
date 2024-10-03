@@ -1,46 +1,80 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# CustomizePokemon React App
 
-## Available Scripts
+This is a React application for customizing Pokémon details, including name, description, and image uploads. The app is containerized with Docker for easy deployment.
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+Before you begin, ensure you have the following software installed:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Node.js](https://nodejs.org/) (for local development)
+- [Docker](https://www.docker.com/) (for containerization)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Local Development
 
-### `npm test`
+### 1. Clone the Repository
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/your-username/customize-pokemon.git
+cd customize-pokemon
+```
 
-### `npm run build`
+### 2. Install Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Use npm or yarn to install the project dependencies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# Using npm
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# OR using yarn
+yarn install
+```
 
-### `npm run eject`
+### 3. Run the App Locally
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To start the app in development mode, run the following command:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This will start the React development server, and you can view the app at `http://localhost:3000`.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Building and Running with Docker
 
-## Learn More
+You can build and run the application inside a Docker container to ensure consistency across environments.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Build Docker Image
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Ensure that Docker is installed and running on your system. Build the Docker image by running the following command in the project directory:
+
+```bash
+docker build -t customize-pokemon-app .
+```
+
+### 2. Run the Docker Container
+
+Once the image is built, you can run the container:
+
+```bash
+docker run -d -p 3000:80 --name customize-pokemon-container customize-pokemon-app
+```
+
+Now, the application will be accessible in your browser at `http://localhost:3000`.
+
+### 3. Stop the Docker Container
+
+To stop the running Docker container:
+
+```bash
+docker stop customize-pokemon-container
+```
+
+
+## Notes
+
+- The app is built using React and utilizes the PrimeReact component library.
+- The app also uses the IMGBB API to upload and store Pokémon images.
+- Feel free to customize the Dockerfile or application settings as needed.
+
