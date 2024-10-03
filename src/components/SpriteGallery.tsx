@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Pokemon, SpriteVersions } from "../types/pokemonTypes";
 
 interface SpriteGalleryProps {
@@ -20,6 +20,11 @@ const SpriteGallery = ({ currentPokemonData }: SpriteGalleryProps) => {
 
   const [currentGenerationIndex, setCurrentGenerationIndex] = useState(0);
   const [currentVersionIndex, setCurrentVersionIndex] = useState(0);
+
+  useEffect(() => {
+    setCurrentGenerationIndex(0);
+    setCurrentVersionIndex(0);
+  }, [currentPokemonData]);
 
   const getCurrentSprite = () => {
     if (!currentPokemonData) return "";
@@ -66,19 +71,25 @@ const SpriteGallery = ({ currentPokemonData }: SpriteGalleryProps) => {
   };
 
   return (
-    <div className="flex h-fit">
-      <button onClick={() => changeSpriteImage("previous")}>previous</button>
-      <div className="flex flex-col">
-        <img
-          alt="sprite image"
-          src={getCurrentSprite()}
-          className="w-44 h-44 object-contain"
-        />
-        <p>{generations[currentGenerationIndex]}</p>
-        <p>{versionsPerGeneration[currentGenerationIndex]}</p>
-      </div>
+    <div className="flex h-fit gap-2">
+      <button onClick={() => changeSpriteImage("previous")}>
+        <i
+          className="pi pi-caret-left text-orange-950"
+          style={{ fontSize: "2rem" }}
+        ></i>
+      </button>
+      <img
+        alt="sprite image"
+        src={getCurrentSprite()}
+        className="w-24 h-24 object-contain"
+      />
 
-      <button onClick={() => changeSpriteImage("next")}>next</button>
+      <button onClick={() => changeSpriteImage("next")}>
+        <i
+          className="pi pi-caret-right text-orange-950"
+          style={{ fontSize: "2rem" }}
+        ></i>
+      </button>
     </div>
   );
 };

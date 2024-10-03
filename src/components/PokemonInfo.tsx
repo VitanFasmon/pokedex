@@ -67,8 +67,8 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
   return (
     <section>
       {currentPokemonData ? (
-        <div className="flex justify-between">
-          <div className="flex flex-row px-4">
+        <div className="flex justify-between flex-wrap">
+          <div className="flex flex-row px-4 md:w-1/2">
             <div className="flex items-center pl-2 ">
               <img alt="" src={heightBarImg} className="h-full "></img>
               <p className="">{currentPokemonData.height} cm</p>
@@ -95,7 +95,7 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
               <SpriteGallery currentPokemonData={currentPokemonData} />
             </div>
           </div>
-          <div className="flex flex-col items-start gap-2 px-4">
+          <div className="flex flex-col items-start gap-2 px-4 md:w-1/2">
             <h2 className="text-orange-950 text-4xl">
               {capitalizeFirstLetter(currentPokemonData.name)}
             </h2>
@@ -108,7 +108,7 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
                 );
               })}
             </div>
-            <div className="flex border border-orange-950 rounded py-2 px-4 h-full text-orange-950 text-left gap-2 flex-col">
+            <div className="flex border border-orange-950 rounded py-2 px-4 h-full text-orange-950 text-left gap-2 flex-col max-h-72 overflow-auto	">
               {loadingAbilities ? (
                 <p>Loading abilities...</p>
               ) : (
