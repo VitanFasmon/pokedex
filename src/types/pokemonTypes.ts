@@ -19,6 +19,83 @@ type Ability = {
   id: number;
   name: string;
 };
+type PokemonType = {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+};
+type SpriteVersions = {
+  "generation-i": {
+    "red-blue": {
+      front_default: string;
+    };
+    yellow: {
+      front_default: string;
+    };
+  };
+  "generation-ii": {
+    crystal: {
+      front_default: string;
+    };
+    gold: {
+      front_default: string;
+    };
+    silver: {
+      front_default: string;
+    };
+  };
+  "generation-iii": {
+    [emerald: string]: {
+      front_default: string;
+    };
+    "firered-leafgreen": {
+      front_default: string;
+    };
+    "ruby-sapphire": {
+      front_default: string;
+    };
+  };
+  "generation-iv": {
+    "diamond-perl": {
+      front_default: string;
+    };
+    "heartgold-soulsilver": {
+      front_default: string;
+    };
+    platinum: {
+      front_default: string;
+    };
+  };
+  "generation-v": {
+    "black-white": {
+      front_default: string;
+    };
+  };
+  "generation-vi": {
+    "omegaruby-alphasapphire": {
+      front_default: string;
+    };
+    "x-y": {
+      front_default: string;
+    };
+  };
+  "generation-vii": {
+    icons: {
+      front_default: string;
+    };
+    "ultra-sun-ultra-moon": {
+      front_default: string;
+    };
+  };
+  "generation-viii": {
+    icons: {
+      front_default: string;
+    };
+  };
+};
+
 type Pokemon = {
   abilities: AbilityList[];
   base_experience: number;
@@ -37,10 +114,21 @@ type Pokemon = {
   past_types: [];
   species: {};
   sprites: {
-    front_default: string;
+    other: {
+      "official-artwork": {
+        front_default: string;
+      };
+    };
+    versions: SpriteVersions;
   };
   stats: [];
-  types: [];
+  types: PokemonType[];
   weight: number;
 };
-export type { PokemonNameAndUrl, Pokemon, Ability, EffectEntry };
+export type {
+  PokemonNameAndUrl,
+  Pokemon,
+  Ability,
+  EffectEntry,
+  SpriteVersions,
+};

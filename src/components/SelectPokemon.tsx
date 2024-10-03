@@ -1,13 +1,14 @@
-import "primereact/resources/themes/lara-light-indigo/theme.css"; // theme
-import "primereact/resources/primereact.min.css"; // core css
-import "primeicons/primeicons.css"; // icons
-import "primeflex/primeflex.css"; // flex utilities
+import "primereact/resources/themes/lara-light-indigo/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+import "primeflex/primeflex.css";
 
 import React, { useState, useEffect } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 import { PokemonNameAndUrl } from "../types/pokemonTypes";
 import { getPokemonList } from "../services/GetPokemonData";
+import { capitalizeFirstLetter } from "../services/CapitalizeFirstLetter";
 
 interface SelectPokemonProps {
   onSelect: (pokemon: PokemonNameAndUrl | null) => void;
@@ -18,7 +19,6 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
   const [selectedPokemon, setSelectedPokemon] =
     useState<PokemonNameAndUrl | null>(null);
 
-  // Fetch the Pokémon list when the component mounts
   useEffect(() => {
     const fetchPokemon = async () => {
       const list = await getPokemonList();
@@ -27,13 +27,11 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
     fetchPokemon();
   }, []);
 
-  // Handle Pokémon selection from dropdown
   const handleSelectPokemon = (pokemon: PokemonNameAndUrl | null) => {
     setSelectedPokemon(pokemon);
     onSelect(pokemon);
   };
 
-  // Pick a random Pokémon from the list
   const handleRandomSelect = () => {
     if (pokemonList.length > 0) {
       const randomIndex = Math.floor(Math.random() * pokemonList.length);
@@ -44,7 +42,7 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
   };
 
   return (
-    <div className="p-d-flex p-ai-center">
+    <section className="flex justify-between gap-4 p-4">
       <Dropdown
         value={selectedPokemon}
         options={pokemonList}
@@ -53,21 +51,20 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
         placeholder="Select a Pokémon"
         filter
         showClear
-        className="p-mr-2"
-        style={{ width: "250px" }}
+        className="w-full  bg-orange-100 border border-orange-950 rounded"
         itemTemplate={(option) => (
-          <div className="p-d-flex p-ai-center">
-            <span>{option.name}</span>
+          <div className="text-orange-950">
+            <span>{capitalizeFirstLetter(option.name)}</span>
           </div>
         )}
       />
       <Button
-        label="Random Pokémon"
-        icon="pi pi-refresh"
+        label="Random Pokemon"
+        icon="pi pi-refresh "
         onClick={handleRandomSelect}
-        className="p-button-success"
+        className="p-button-success bg-orange-100 px-2 border border-orange-950 rounded"
       />
-    </div>
+    </section>
   );
 };
 

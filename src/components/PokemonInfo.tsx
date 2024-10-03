@@ -1,4 +1,3 @@
-// components/PokemonInfo.tsx
 import { useEffect, useState } from "react";
 import {
   getAbilityData,
@@ -6,6 +5,10 @@ import {
   getPokemonList,
 } from "../services/GetPokemonData";
 import { Pokemon, PokemonNameAndUrl } from "../types/pokemonTypes";
+import { capitalizeFirstLetter } from "../services/CapitalizeFirstLetter";
+import weightImg from "../assets/icons/weight.png";
+import heightBarImg from "../assets/icons/heightBar.png";
+import SpriteGallery from "./SpriteGallery";
 interface PokemonInfoProps {
   pokemonUrl: string;
 }
@@ -63,26 +66,49 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
 
   return (
     <section>
-      <div>
-        <h2>Current Pokémon Data:</h2>
-        {currentPokemonData ? (
-          <div>
-            <p>
-              <strong>Name:</strong>{" "}
-              {capitalizeFirstLetter(currentPokemonData.name)}
-            </p>
-            <p>
-              <strong>Height:</strong> {currentPokemonData.height}
-            </p>
-            <p>
-              <strong>Weight:</strong> {currentPokemonData.weight}
-            </p>
+      {currentPokemonData ? (
+        <div className="flex justify-between">
+          <div className="flex flex-row px-4">
+            <div className="flex items-center pl-2 ">
+              <img alt="" src={heightBarImg} className="h-full "></img>
+              <p className="">{currentPokemonData.height} cm</p>
+            </div>
+
+            <div>
+              <div className="relative inline-block">
+                <img src={weightImg} className="h-16" alt="" />
+                <span className="absolute inset-0 flex items-center justify-center text-center text-xs top-5">
+                  {currentPokemonData.weight} kg
+                </span>
+              </div>
+            </div>
+
             <img
-              src={currentPokemonData.sprites.front_default}
+              className="object-scale-down  h-96"
+              src={
+                currentPokemonData.sprites.other["official-artwork"]
+                  .front_default
+              }
               alt={currentPokemonData.name}
             />
-            <div>
-              <h3>Abilities:</h3>
+            <div className="flex justify-center items-end ">
+              <SpriteGallery currentPokemonData={currentPokemonData} />
+            </div>
+          </div>
+          <div className="flex flex-col items-start gap-2 px-4">
+            <h2 className="text-orange-950 text-4xl">
+              {capitalizeFirstLetter(currentPokemonData.name)}
+            </h2>
+            <div className="flex gap-2">
+              {currentPokemonData.types.map((pokemonType) => {
+                return (
+                  <span className="border border-orange-950 p-1 bg-orange-100 rounded">
+                    {pokemonType.type.name}
+                  </span>
+                );
+              })}
+            </div>
+            <div className="flex border border-orange-950 rounded py-2 px-4 h-full text-orange-950 text-left gap-2 flex-col">
               {loadingAbilities ? (
                 <p>Loading abilities...</p>
               ) : (
@@ -99,16 +125,12 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
               )}
             </div>
           </div>
-        ) : (
-          <p>Loading Pokémon data...</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <p>Loading Pokémon data...</p>
+      )}
     </section>
   );
-};
-
-const capitalizeFirstLetter = (str: string): string => {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
 export default PokemonInfo;

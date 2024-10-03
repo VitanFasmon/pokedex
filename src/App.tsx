@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import React, { useState } from "react";
 import "./App.css";
-import { getPokemonList } from "./services/GetPokemonData";
 import PokemonInfo from "./components/PokemonInfo";
 import { PokemonNameAndUrl } from "./types/pokemonTypes";
 import SelectPokemon from "./components/SelectPokemon";
@@ -19,9 +17,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div className="p-p-4">
-        <h1>Select a Pokémon</h1>
+    <div className="App bg-orange-50 h-full">
+      <section className="p-p-4">
         <SelectPokemon onSelect={handlePokemonSelect} />
 
         {selectedPokemonUrl && (
@@ -29,7 +26,7 @@ function App() {
             <PokemonInfo pokemonUrl={selectedPokemonUrl} />
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 }
