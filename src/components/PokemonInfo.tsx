@@ -71,15 +71,15 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
           <div className="flex flex-row px-4 md:w-1/2">
             <div className="flex items-center pl-2 ">
               <img alt="" src={heightBarImg} className="h-full "></img>
-              <p className="">{currentPokemonData.height} cm</p>
+              <p className="text-orange-950">{currentPokemonData.height} cm</p>
             </div>
 
             <div>
               <div className="relative inline-block">
                 <img src={weightImg} className="h-16" alt="" />
-                <span className="absolute inset-0 flex items-center justify-center text-center text-xs top-5">
+                <p className="absolute inset-0 flex items-center justify-center text-center text-xs top-5 text-orange-950">
                   {currentPokemonData.weight} kg
-                </span>
+                </p>
               </div>
             </div>
 
@@ -96,9 +96,9 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
             </div>
           </div>
           <div className="flex flex-col items-start gap-2 px-4 md:w-1/2">
-            <h2 className="text-orange-950 text-4xl">
+            <h1 className="text-orange-950 text-4xl">
               {capitalizeFirstLetter(currentPokemonData.name)}
-            </h2>
+            </h1>
             <div className="flex gap-2">
               {currentPokemonData.types.map((pokemonType) => {
                 return (

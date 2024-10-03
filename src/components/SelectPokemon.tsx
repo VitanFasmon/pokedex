@@ -51,7 +51,7 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
         placeholder="Select a Pokémon"
         filter
         showClear
-        className="w-full  bg-orange-100 border border-orange-950 rounded"
+        className="w-full placeholder-orange-800 bg-orange-100 border border-orange-950 text-orange-950 rounded"
         itemTemplate={(option) => (
           <div className="text-orange-950">
             <span>{capitalizeFirstLetter(option.name)}</span>
@@ -62,7 +62,7 @@ const SelectPokemon: React.FC<SelectPokemonProps> = ({ onSelect }) => {
         label="Random Pokemon"
         icon="pi pi-refresh "
         onClick={handleRandomSelect}
-        className="p-button-success bg-orange-100 px-2 border border-orange-950 rounded"
+        className="p-button-success bg-orange-100 px-2 border border-orange-950 text-orange-950 rounded"
       />
     </section>
   );

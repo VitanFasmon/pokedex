@@ -3,6 +3,7 @@ import "./App.css";
 import PokemonInfo from "./components/PokemonInfo";
 import { PokemonNameAndUrl } from "./types/pokemonTypes";
 import SelectPokemon from "./components/SelectPokemon";
+import CustomizePokemon from "./components/CustomizePokemon";
 function App() {
   const [selectedPokemonUrl, setSelectedPokemonUrl] = useState<string | null>(
     null
@@ -22,8 +23,9 @@ function App() {
         <SelectPokemon onSelect={handlePokemonSelect} />
 
         {selectedPokemonUrl && (
-          <div className="p-mt-4">
+          <div className="flex flex-col gap-4">
             <PokemonInfo pokemonUrl={selectedPokemonUrl} />
+            <CustomizePokemon pokemonUrl={selectedPokemonUrl} />
           </div>
         )}
       </section>
