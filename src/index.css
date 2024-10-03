@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html,
+body,
+#app,
+.root,
+#app > div {
+  height: fit-content;
+  min-height: 100%;
+}
+.p-fileupload-choose {
+  background-color: #411209;
+  border: 1px;
+  border-radius: 4px;
+}

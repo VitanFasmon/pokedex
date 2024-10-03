@@ -5,7 +5,6 @@ import { FileUpload } from "primereact/fileupload";
 import { Toast } from "primereact/toast";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { useEffect, useRef, useState } from "react";
-
 interface PokemonInfoProps {
   pokemonUrl: string;
 }
@@ -135,7 +134,7 @@ const CustomizePokemon = ({ pokemonUrl }: PokemonInfoProps) => {
   };
 
   return (
-    <section className="flex flex-col justify-start items-start gap-2 px-4">
+    <section className="flex flex-col justify-start items-start gap-2 px-4 pb-4">
       <h2 className="text-orange-950 text-2xl">Customize the POKEMON</h2>
       <div className="flex justify-between flex-wrap w-full">
         <div className="flex md:w-1/2 gap-2 flex-col">
@@ -173,7 +172,7 @@ const CustomizePokemon = ({ pokemonUrl }: PokemonInfoProps) => {
             maxLength={300}
           />
 
-          <div className="flex justify-between items-center mt-4">
+          <div className="flex justify-between  mt-4">
             <div className="card flex justify-content-center gap-2">
               <Toast ref={toast}></Toast>
 
@@ -187,9 +186,15 @@ const CustomizePokemon = ({ pokemonUrl }: PokemonInfoProps) => {
                   onImageUpload(e);
                 }}
                 auto
+                className="fileUploadOrange"
+                chooseLabel="Choose image"
               />
             </div>
-            <Button label="Save" className="mt-4" onClick={savePokemonData} />
+            <Button
+              label="Save"
+              className="mt-4 text-orange-950"
+              onClick={savePokemonData}
+            />
           </div>
 
           {loading && (

@@ -68,29 +68,33 @@ const PokemonInfo = ({ pokemonUrl }: PokemonInfoProps) => {
     <section>
       {currentPokemonData ? (
         <div className="flex justify-between flex-wrap">
-          <div className="flex flex-row px-4 md:w-1/2">
-            <div className="flex items-center pl-2 ">
-              <img alt="" src={heightBarImg} className="h-full "></img>
-              <p className="text-orange-950">{currentPokemonData.height} cm</p>
-            </div>
-
-            <div>
-              <div className="relative inline-block">
-                <img src={weightImg} className="h-16" alt="" />
-                <p className="absolute inset-0 flex items-center justify-center text-center text-xs top-5 text-orange-950">
-                  {currentPokemonData.weight} kg
-                </p>
+          <div className="flex flex-row md:w-1/2 flex-wrap sm:justify-center sm:gap-4">
+            <div className="flex flex-row ">
+              <div className="flex flex-row ">
+                <div className="flex items-center w-full">
+                  <img alt="" src={heightBarImg} className="h-full "></img>
+                  <p className="text-orange-950 ">
+                    {`${currentPokemonData.height} cm`}
+                  </p>
+                </div>
+                <div className="w-full">
+                  <div className="relative inline-block">
+                    <img src={weightImg} className="h-16 w-16" alt="" />
+                    <p className="absolute inset-0 flex items-center justify-center text-center text-xs top-5 text-orange-950">
+                      {currentPokemonData.weight} kg
+                    </p>
+                  </div>
+                </div>
               </div>
+              <img
+                className="object-scale-down  h-96"
+                src={
+                  currentPokemonData.sprites.other["official-artwork"]
+                    .front_default
+                }
+                alt={currentPokemonData.name}
+              />
             </div>
-
-            <img
-              className="object-scale-down  h-96"
-              src={
-                currentPokemonData.sprites.other["official-artwork"]
-                  .front_default
-              }
-              alt={currentPokemonData.name}
-            />
             <div className="flex justify-center items-end ">
               <SpriteGallery currentPokemonData={currentPokemonData} />
             </div>
